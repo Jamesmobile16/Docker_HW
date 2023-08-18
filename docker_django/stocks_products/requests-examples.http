@@ -1,0 +1,84 @@
+# примеры API-запросов
+
+@baseUrl = http://80.78.251.20:8000/api/v1
+
+# создание продукта
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+  "title": "MacBook Air 15",
+  "description": "Apple MacBook Air 15 16/512 Space Grey"
+}
+
+###
+
+# получение продуктов
+GET {{baseUrl}}/products/?page=1
+Content-Type: application/json
+
+###
+
+# обновление продукта
+PATCH {{baseUrl}}/products/1/
+Content-Type: application/json
+
+{
+  "description": "Самые сочные и ароматные помидорки у Ашотика"
+}
+
+###
+
+# удаление продукта
+DELETE {{baseUrl}}/products/1/
+Content-Type: application/json
+
+###
+
+# поиск продуктов по названию и описанию
+GET {{baseUrl}}/products/?search=помидор
+Content-Type: application/json
+
+###
+
+# создание склада
+POST {{baseUrl}}/stocks/
+Content-Type: application/json
+
+{
+  "address": "Moscow",
+  "positions": [
+    {
+      "product": 1,
+      "quantity": 40,
+      "price": 120
+    },
+    {
+      "product": 2,
+      "quantity": 5,
+      "price": 99000
+    }
+  ]
+}
+
+###
+
+# обновляем записи на складе
+PATCH {{baseUrl}}/stocks/2/
+Content-Type: application/json
+
+{
+  "positions": [
+    {
+      "product": 2,
+      "quantity": 7,
+      "price": 89000
+    }
+  ]
+}
+
+###
+
+# поиск складов, где есть определенный продукт
+GET {{baseUrl}}/stocks/?products=2
+Content-Type: application/json
